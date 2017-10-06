@@ -9,6 +9,7 @@ defmodule BandTogetherApp.Musicians.User do
     field :email, :string
     field :first_name, :string
     field :last_name, :string
+    field :stage_name, :string
     field :password, :string
 
     timestamps()
