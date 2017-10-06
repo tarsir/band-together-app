@@ -16,7 +16,6 @@ defmodule BandTogetherAppWeb.UserView do
       last_name: user.last_name,
       stage_name: user.stage_name,
       email: user.email,
-      password: user.password,
       biography: user.biography}
   end
 end
