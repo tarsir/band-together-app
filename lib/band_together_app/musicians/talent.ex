@@ -9,6 +9,7 @@ defmodule BandTogetherApp.Musicians.Talent do
     field :title, :string
 
     timestamps()
+    many_to_many :users, BandTogetherApp.Musicians.User, join_through: "users_talents"
   end
 
   @doc false

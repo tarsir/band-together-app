@@ -13,6 +13,7 @@ defmodule BandTogetherApp.Musicians.User do
     field :password, :string
 
     timestamps()
+    many_to_many :talents, BandTogetherApp.Musicians.Talent, join_through: "users_talents"
   end
 
   @doc false
