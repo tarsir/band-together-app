@@ -13,7 +13,6 @@ defmodule BandTogetherAppWeb.TalentView do
   def render("talent.json", %{talent: talent}) do
     %{id: talent.id,
       title: talent.title,
-      description: talent.description,
       img_filepath: talent.img_filepath}
   end
 end
