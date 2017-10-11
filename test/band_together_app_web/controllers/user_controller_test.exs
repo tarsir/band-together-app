@@ -4,9 +4,9 @@ defmodule BandTogetherAppWeb.UserControllerTest do
   alias BandTogetherApp.Musicians
   alias BandTogetherApp.Musicians.User
 
-  @create_attrs %{biography: "some biography", email: "some email", first_name: "some first_name", last_name: "some last_name", password: "some password"}
-  @update_attrs %{biography: "some updated biography", email: "some updated email", first_name: "some updated first_name", last_name: "some updated last_name", password: "some updated password"}
-  @invalid_attrs %{biography: nil, email: nil, first_name: nil, last_name: nil, password: nil}
+  @create_attrs %{biography: "some biography", email: "some email", first_name: "some first_name", last_name: "some last_name", password: "some password", stage_name: "marilyn manson"}
+  @update_attrs %{biography: "some updated biography", email: "some updated email", first_name: "some updated first_name", last_name: "some updated last_name", password: "some updated password", stage_name: "iron maiden"}
+  @invalid_attrs %{biography: nil, email: nil, first_name: nil, last_name: nil, password: nil, stage_name: nil}
 
   def fixture(:user) do
     {:ok, user} = Musicians.create_user(@create_attrs)
@@ -36,7 +36,7 @@ defmodule BandTogetherAppWeb.UserControllerTest do
         "email" => "some email",
         "first_name" => "some first_name",
         "last_name" => "some last_name",
-        "password" => "some password"}
+        "stage_name" => "marilyn manson"}
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -59,7 +59,7 @@ defmodule BandTogetherAppWeb.UserControllerTest do
         "email" => "some updated email",
         "first_name" => "some updated first_name",
         "last_name" => "some updated last_name",
-        "password" => "some updated password"}
+        "stage_name" => "iron maiden"}
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
