@@ -101,4 +101,100 @@ defmodule BandTogetherApp.Musicians do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  alias BandTogetherApp.Musicians.Talent
+
+  @doc """
+  Returns the list of talents.
+
+  ## Examples
+
+      iex> list_talents()
+      [%Talent{}, ...]
+
+  """
+  def list_talents do
+    Repo.all(Talent)
+  end
+
+  @doc """
+  Gets a single talent.
+
+  Raises `Ecto.NoResultsError` if the Talent does not exist.
+
+  ## Examples
+
+      iex> get_talent!(123)
+      %Talent{}
+
+      iex> get_talent!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_talent!(id), do: Repo.get!(Talent, id)
+
+  @doc """
+  Creates a talent.
+
+  ## Examples
+
+      iex> create_talent(%{field: value})
+      {:ok, %Talent{}}
+
+      iex> create_talent(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_talent(attrs \\ %{}) do
+    %Talent{}
+    |> Talent.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a talent.
+
+  ## Examples
+
+      iex> update_talent(talent, %{field: new_value})
+      {:ok, %Talent{}}
+
+      iex> update_talent(talent, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_talent(%Talent{} = talent, attrs) do
+    talent
+    |> Talent.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Talent.
+
+  ## Examples
+
+      iex> delete_talent(talent)
+      {:ok, %Talent{}}
+
+      iex> delete_talent(talent)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_talent(%Talent{} = talent) do
+    Repo.delete(talent)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking talent changes.
+
+  ## Examples
+
+      iex> change_talent(talent)
+      %Ecto.Changeset{source: %Talent{}}
+
+  """
+  def change_talent(%Talent{} = talent) do
+    Talent.changeset(talent, %{})
+  end
 end

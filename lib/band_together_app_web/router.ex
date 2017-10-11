@@ -18,6 +18,7 @@ defmodule BandTogetherAppWeb.Router do
 
     get "/test", PageController, :test
     resources "/users", UserController, except: [:new, :edit]
+    resources "/talents", TalentController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
