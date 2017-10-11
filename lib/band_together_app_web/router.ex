@@ -16,7 +16,6 @@ defmodule BandTogetherAppWeb.Router do
   scope "/", BandTogetherAppWeb do
     pipe_through :api # Use the default browser stack
 
-    get "/test", PageController, :test
     resources "/users", UserController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]
   end
