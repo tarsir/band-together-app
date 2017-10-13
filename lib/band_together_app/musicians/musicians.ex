@@ -35,7 +35,10 @@ defmodule BandTogetherApp.Musicians do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    Repo.get!(User, id)
+    |> Repo.preload (:talents)
+  end
 
   @doc """
   Creates a user.
