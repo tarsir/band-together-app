@@ -37,7 +37,7 @@ defmodule BandTogetherApp.Musicians do
   """
   def get_user!(id) do
     Repo.get!(User, id)
-    |> Repo.preload (:talents)
+    |> Repo.preload(:talents)
   end
 
   @doc """

@@ -22,8 +22,8 @@ defmodule BandTogetherApp.Musicians.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:first_name, :last_name, :email, :password, :biography, :stage_name])
-    |> validate_required([:first_name, :last_name, :email, :password, :biography])
+    |> cast(attrs, [:first_name, :last_name, :email, :password, :biography, :stage_name, :loc_country, :loc_state, :loc_city])
+    |> validate_required([:first_name, :last_name, :email, :biography])
     |> unique_constraint(:email)
   end
 end
