@@ -7,7 +7,6 @@ defmodule BandTogetherAppWeb.UserView do
   end
 
   def render("show.json", %{user: user}) do
-    # IO.puts user
     %{data: render_one(user, UserView, "user_detail.json")}
   end
 
@@ -17,8 +16,7 @@ defmodule BandTogetherAppWeb.UserView do
       first_name: user.first_name,
       last_name: user.last_name,
       stage_name: user.stage_name,
-      email: user.email,
-      biography: user.biography
+      email: user.email
     }
   end
 
@@ -30,7 +28,12 @@ defmodule BandTogetherAppWeb.UserView do
       stage_name: user.stage_name,
       email: user.email,
       biography: user.biography,
-      talents: render_many(user.talents, TalentView, "talent.json")
+      talents: render_many(user.talents, TalentView, "talent.json"),
+      location: %{
+        country: user.loc_country,
+        state: user.loc_state,
+        city: user.loc_city
+      }
     }
   end
 end

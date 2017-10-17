@@ -11,6 +11,9 @@ defmodule BandTogetherApp.Musicians.User do
     field :last_name, :string
     field :stage_name, :string
     field :password, :string
+    field :loc_country, :string
+    field :loc_state, :string
+    field :loc_city, :string
 
     timestamps()
     many_to_many :talents, BandTogetherApp.Musicians.Talent, join_through: "users_talents"
