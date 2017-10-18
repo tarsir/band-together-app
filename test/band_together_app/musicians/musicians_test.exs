@@ -134,4 +134,66 @@ defmodule BandTogetherApp.MusiciansTest do
       assert %Ecto.Changeset{} = Musicians.change_talent(talent)
     end
   end
+
+  describe "portfolios" do
+    alias BandTogetherApp.Musicians.Portfolio
+
+    @valid_attrs %{title: "some title", url: "some url"}
+    @update_attrs %{title: "some updated title", url: "some updated url"}
+    @invalid_attrs %{title: nil, url: nil}
+
+    def portfolio_fixture(attrs \\ %{}) do
+      {:ok, portfolio} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Musicians.create_portfolio()
+
+      portfolio
+    end
+
+    test "list_portfolios/0 returns all portfolios" do
+      portfolio = portfolio_fixture()
+      assert Musicians.list_portfolios() == [portfolio]
+    end
+
+    test "get_portfolio!/1 returns the portfolio with given id" do
+      portfolio = portfolio_fixture()
+      assert Musicians.get_portfolio!(portfolio.id) == portfolio
+    end
+
+    test "create_portfolio/1 with valid data creates a portfolio" do
+      assert {:ok, %Portfolio{} = portfolio} = Musicians.create_portfolio(@valid_attrs)
+      assert portfolio.title == "some title"
+      assert portfolio.url == "some url"
+    end
+
+    test "create_portfolio/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Musicians.create_portfolio(@invalid_attrs)
+    end
+
+    test "update_portfolio/2 with valid data updates the portfolio" do
+      portfolio = portfolio_fixture()
+      assert {:ok, portfolio} = Musicians.update_portfolio(portfolio, @update_attrs)
+      assert %Portfolio{} = portfolio
+      assert portfolio.title == "some updated title"
+      assert portfolio.url == "some updated url"
+    end
+
+    test "update_portfolio/2 with invalid data returns error changeset" do
+      portfolio = portfolio_fixture()
+      assert {:error, %Ecto.Changeset{}} = Musicians.update_portfolio(portfolio, @invalid_attrs)
+      assert portfolio == Musicians.get_portfolio!(portfolio.id)
+    end
+
+    test "delete_portfolio/1 deletes the portfolio" do
+      portfolio = portfolio_fixture()
+      assert {:ok, %Portfolio{}} = Musicians.delete_portfolio(portfolio)
+      assert_raise Ecto.NoResultsError, fn -> Musicians.get_portfolio!(portfolio.id) end
+    end
+
+    test "change_portfolio/1 returns a portfolio changeset" do
+      portfolio = portfolio_fixture()
+      assert %Ecto.Changeset{} = Musicians.change_portfolio(portfolio)
+    end
+  end
 end

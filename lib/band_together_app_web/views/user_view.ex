@@ -29,6 +29,7 @@ defmodule BandTogetherAppWeb.UserView do
       email: user.email,
       biography: user.biography,
       talents: render_many(user.talents, TalentView, "talent.json"),
+      portfolios: render_many(user.portfolios, PortfolioView, "portfolio.json"),
       location: %{
         country: user.loc_country,
         state: user.loc_state,

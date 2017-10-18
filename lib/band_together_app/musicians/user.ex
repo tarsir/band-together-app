@@ -17,6 +17,7 @@ defmodule BandTogetherApp.Musicians.User do
 
     timestamps()
     many_to_many :talents, BandTogetherApp.Musicians.Talent, join_through: "users_talents"
+    many_to_many :portfolios, BandTogetherApp.Musicians.Portfolio, join_through: "users_portfolios"
   end
 
   @doc false
