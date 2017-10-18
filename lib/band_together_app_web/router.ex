@@ -18,6 +18,7 @@ defmodule BandTogetherAppWeb.Router do
 
     resources "/users", UserController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]
+    resources "/portfolios", PortfolioController, except: [:new, :edit]
     get "/health_check", MonitoringController, :health_check
   end
 
