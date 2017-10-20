@@ -1,6 +1,6 @@
 defmodule BandTogetherAppWeb.UserView do
   use BandTogetherAppWeb, :view
-  alias BandTogetherAppWeb.{UserView, TalentView}
+  alias BandTogetherAppWeb.{UserView, TalentView, PortfolioView}
 
   def render("index.json", %{users: users}) do
     %{data: render_many(users, UserView, "user.json")}
