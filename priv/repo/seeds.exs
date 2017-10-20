@@ -39,9 +39,9 @@ defmodule BandTogetherApp.DatabaseSeeder do
     ]
 
     @dev_bands [
-        %BBand{biography: "hello", description: "We are cool", stage_name: "The Cool Kids"}, \
-        %BBand{biography: "mewtwo", description: "We are cooler", stage_name: "The Cooler Kids"}, \
-        %BBand{biography: "hobbit", description: "We are coolest", stage_name: "The Coolest Kids"}
+        %BBand{biography: "hello", description: "We are cool", stage_name: "The Cool Kids", loc_country: "USA"}, \
+        %BBand{biography: "mewtwo", description: "We are cooler", stage_name: "The Cooler Kids", loc_country: "Spain"}, \
+        %BBand{biography: "hobbit", description: "We are coolest", stage_name: "The Coolest Kids", loc_country: "China"}
     ]
 
 

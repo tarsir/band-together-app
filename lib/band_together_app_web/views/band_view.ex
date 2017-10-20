@@ -15,8 +15,11 @@ defmodule BandTogetherAppWeb.BandView do
       stage_name: band.stage_name,
       description: band.description,
       biography: band.biography,
-      loc_country: band.loc_country,
-      loc_city: band.loc_city,
-      loc_state: band.loc_state}
+      location: %{
+        country: band.loc_country,
+        city: band.loc_city,
+        state: band.loc_state
+      }
+    }
   end
 end
