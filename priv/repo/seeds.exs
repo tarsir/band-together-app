@@ -46,8 +46,8 @@ defmodule BandTogetherApp.DatabaseSeeder do
 
 
     def seed_dev() do
-        # Enum.each(@dev_users, fn (person) -> Repo.insert!(person) end)
-        # Enum.each(@dev_talents, fn (talent) -> Repo.insert!(talent) end)
+        Enum.each(@dev_users, fn (person) -> Repo.insert!(person) end)
+        Enum.each(@dev_talents, fn (talent) -> Repo.insert!(talent) end)
         Enum.each(@dev_portfolios, fn (talent) -> Repo.insert!(talent) end)
         Enum.each(@dev_bands, fn (talent) -> Repo.insert!(talent) end)
     end
