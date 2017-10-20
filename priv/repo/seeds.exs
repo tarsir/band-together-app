@@ -15,6 +15,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
 
     alias BandTogetherApp.Musicians.User, as: BUser
     alias BandTogetherApp.Musicians.Talent, as: BTalent
+    alias BandTogetherApp.Musicians.Portfolio, as: BPortfolio
 
     @dev_users [
         %BUser{first_name: "Joe", last_name: "Hogs", email: "j@hoggo.com", password: "nil", biography: "j hogs", stage_name: "Hogger"}, \
@@ -28,9 +29,18 @@ defmodule BandTogetherApp.DatabaseSeeder do
         %BTalent{title: "Mixing", img_filepath: "mixer.png"}
     ]
 
+    @dev_portfolios [
+        %BPortfolio{title: "Isucon", url: "http://isu.con"}, \
+        %BPortfolio{title: "Woodstock", url: "http://wood.stock"}, \
+        %BPortfolio{title: "Rime of the Ancient Mariner", url: "http://mad.rimez"}, \
+        %BPortfolio{title: "Brave New World", url: "http://ironmaid.en"}, \
+        %BPortfolio{title: "OC Remix", url: "https://soundcloud.com/ocremix/sets/mirror-image-a-link-to-the-past-remixed"}
+    ]
+
     def seed_dev() do
         Enum.each(@dev_users, fn (person) -> Repo.insert!(person) end)
         Enum.each(@dev_talents, fn (talent) -> Repo.insert!(talent) end)
+        Enum.each(@dev_portfolios, fn (talent) -> Repo.insert!(talent) end)
     end
 end
 
