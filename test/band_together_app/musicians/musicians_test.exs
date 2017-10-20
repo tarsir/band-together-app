@@ -196,4 +196,74 @@ defmodule BandTogetherApp.MusiciansTest do
       assert %Ecto.Changeset{} = Musicians.change_portfolio(portfolio)
     end
   end
+
+  describe "bands" do
+    alias BandTogetherApp.Musicians.Band
+
+    @valid_attrs %{biography: "some biography", description: "some description", loc_city: "some loc_city", loc_country: "some loc_country", loc_state: "some loc_state", stage_name: "some stage_name"}
+    @update_attrs %{biography: "some updated biography", description: "some updated description", loc_city: "some updated loc_city", loc_country: "some updated loc_country", loc_state: "some updated loc_state", stage_name: "some updated stage_name"}
+    @invalid_attrs %{biography: nil, description: nil, loc_city: nil, loc_country: nil, loc_state: nil, stage_name: nil}
+
+    def band_fixture(attrs \\ %{}) do
+      {:ok, band} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Musicians.create_band()
+
+      band
+    end
+
+    test "list_bands/0 returns all bands" do
+      band = band_fixture()
+      assert Musicians.list_bands() == [band]
+    end
+
+    test "get_band!/1 returns the band with given id" do
+      band = band_fixture()
+      assert Musicians.get_band!(band.id) == band
+    end
+
+    test "create_band/1 with valid data creates a band" do
+      assert {:ok, %Band{} = band} = Musicians.create_band(@valid_attrs)
+      assert band.biography == "some biography"
+      assert band.description == "some description"
+      assert band.loc_city == "some loc_city"
+      assert band.loc_country == "some loc_country"
+      assert band.loc_state == "some loc_state"
+      assert band.stage_name == "some stage_name"
+    end
+
+    test "create_band/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Musicians.create_band(@invalid_attrs)
+    end
+
+    test "update_band/2 with valid data updates the band" do
+      band = band_fixture()
+      assert {:ok, band} = Musicians.update_band(band, @update_attrs)
+      assert %Band{} = band
+      assert band.biography == "some updated biography"
+      assert band.description == "some updated description"
+      assert band.loc_city == "some updated loc_city"
+      assert band.loc_country == "some updated loc_country"
+      assert band.loc_state == "some updated loc_state"
+      assert band.stage_name == "some updated stage_name"
+    end
+
+    test "update_band/2 with invalid data returns error changeset" do
+      band = band_fixture()
+      assert {:error, %Ecto.Changeset{}} = Musicians.update_band(band, @invalid_attrs)
+      assert band == Musicians.get_band!(band.id)
+    end
+
+    test "delete_band/1 deletes the band" do
+      band = band_fixture()
+      assert {:ok, %Band{}} = Musicians.delete_band(band)
+      assert_raise Ecto.NoResultsError, fn -> Musicians.get_band!(band.id) end
+    end
+
+    test "change_band/1 returns a band changeset" do
+      band = band_fixture()
+      assert %Ecto.Changeset{} = Musicians.change_band(band)
+    end
+  end
 end
