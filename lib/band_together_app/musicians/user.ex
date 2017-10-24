@@ -2,6 +2,9 @@ defmodule BandTogetherApp.Musicians.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias BandTogetherApp.Musicians.User
+  alias BandTogetherApp.Musicians.Talent
+  alias BandTogetherApp.Musicians.Band
+  alias BandTogetherApp.Musicians.Portfolio
 
 
   schema "users" do
@@ -16,8 +19,9 @@ defmodule BandTogetherApp.Musicians.User do
     field :loc_city, :string
 
     timestamps()
-    many_to_many :talents, BandTogetherApp.Musicians.Talent, join_through: "users_talents"
-    many_to_many :portfolios, BandTogetherApp.Musicians.Portfolio, join_through: "users_portfolios"
+    many_to_many :bands, Band, join_through: "bands_users"
+    many_to_many :talents, Talent, join_through: "users_talents"
+    many_to_many :portfolios, Portfolio, join_through: "users_portfolios"
   end
 
   @doc false
