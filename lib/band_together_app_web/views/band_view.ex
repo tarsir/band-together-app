@@ -1,6 +1,6 @@
 defmodule BandTogetherAppWeb.BandView do
   use BandTogetherAppWeb, :view
-  alias BandTogetherAppWeb.BandView
+  alias BandTogetherAppWeb.{BandView, PortfolioView, UserView}
 
   def render("index.json", %{bands: bands}) do
     %{data: render_many(bands, BandView, "band.json")}
@@ -19,7 +19,8 @@ defmodule BandTogetherAppWeb.BandView do
         country: band.loc_country,
         city: band.loc_city,
         state: band.loc_state
-      }
+      },
+      members: render_many(band.users, UserView, "user.json")
     }
   end
 end

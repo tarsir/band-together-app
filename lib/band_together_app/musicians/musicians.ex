@@ -39,6 +39,7 @@ defmodule BandTogetherApp.Musicians do
     Repo.get!(User, id)
     |> Repo.preload(:talents)
     |> Repo.preload(:portfolios)
+    |> Repo.preload(:bands)
   end
 
   @doc """
@@ -311,6 +312,7 @@ defmodule BandTogetherApp.Musicians do
   """
   def list_bands do
     Repo.all(Band)
+    |> Repo.preload(:users)
   end
 
   @doc """
@@ -327,7 +329,10 @@ defmodule BandTogetherApp.Musicians do
       ** (Ecto.NoResultsError)
 
   """
-  def get_band!(id), do: Repo.get!(Band, id)
+  def get_band!(id) do
+    Repo.get!(Band, id)
+    |> Repo.preload(:users)
+  end
 
   @doc """
   Creates a band.
