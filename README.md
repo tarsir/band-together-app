@@ -13,3 +13,7 @@ that happens with the logic and interaction of the application components. There
 side rendering or anything happening - this is purely an API and should, with rare exception,
 be the only location for management and manipulation of data. Representation should be the
 responsibility of the front-end.
+
+## Layout
+
+Mostly, the application currently follows the default Phoenix application structure.
