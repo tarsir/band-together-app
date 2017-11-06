@@ -1,20 +1,15 @@
-# BandTogetherApp
+# Band Together - API
 
-To start your Phoenix server:
+This is the repository for the API of the musician social media platform, Band Together.
+This project has mostly been an exercise in building a production-grade application from
+scratch by myself in Elixir/Phoenix as a learning experience as well as a portfolio piece.
+Also, it might be useful to someone in the world.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## What's Here
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+The API has all of the database models and interactions (queries, relations, all that) and
+will be the future location of all complicated data analysis or really anything interesting
+that happens with the logic and interaction of the application components. There is no server-
+side rendering or anything happening - this is purely an API and should, with rare exception,
+be the only location for management and manipulation of data. Representation should be the
+responsibility of the front-end.
