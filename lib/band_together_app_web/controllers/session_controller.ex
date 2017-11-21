@@ -1,4 +1,5 @@
 defmodule BandTogetherAppWeb.SessionController do
+  require Logger
   use BandTogetherAppWeb, :controller
 
   alias BandTogetherApp.Authentication.Session
@@ -13,7 +14,6 @@ defmodule BandTogetherAppWeb.SessionController do
     user = Repo.get_by(User, email: email)
     cond do
       user && checkpw(password, user.password_hash) ->
-        inspect(user)
         session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
         {:ok, session} = Repo.insert(session_changeset)
         conn
