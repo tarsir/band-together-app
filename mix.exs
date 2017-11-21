@@ -41,7 +41,10 @@ defmodule BandTogetherApp.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:cors_plug, "~> 1.2"}
+      {:cors_plug, "~> 1.2"},
+      {:secure_random, "~> 0.5.1"},
+      {:comeonin, "~> 4.0.3"},
+      {:bcrypt_elixir, "~> 0.12"}
     ]
   end
 

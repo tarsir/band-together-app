@@ -29,7 +29,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
         first_name: "Joe",
         last_name: "Hogs",
         email: "j@hoggo.com",
-        password: "nil",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("nillop"),
         biography: "j hogs",
         stage_name: "Hogger",
         talents: [@guitar_talent, @drum_talent]
@@ -38,7 +38,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
         first_name: "Theodore",
         last_name: "ZORK",
         email: "zork@zorric.com",
-        password: "nil",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("nillop"),
         biography: "ZORK",
         stage_name: "Party Cannon",
         talents: [@guitar_talent, @mixing_talent]
@@ -47,7 +47,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
         first_name: "Wilma",
         last_name: "Jinkies",
         email: "isaidit@jinkies.com",
-        password: "nil",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("nillop"),
         biography: "it must be a clue",
         stage_name: "Mystery Machine",
         talents: [@mixing_talent]
@@ -56,7 +56,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
         first_name: "Charles",
         last_name: "Barkley",
         email: "slam@jam.com",
-        password: "nil",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("nillop"),
         biography: "DJ? TURN IT UP",
         stage_name: "Space Jam",
         talents: [@vocals_talent, @composing_talent]
@@ -65,7 +65,7 @@ defmodule BandTogetherApp.DatabaseSeeder do
         first_name: "Bruce",
         last_name: "Dickinson",
         email: "bruced@thetrooper.com",
-        password: "nil",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("nillop"),
         biography: "YOU'LL TAKE MY LIFE BUT I'LL TAKE YOURS TOO",
         stage_name: "The Trooper",
         talents: [@vocals_talent, @composing_talent]

@@ -13,9 +13,15 @@ defmodule BandTogetherAppWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth_api do
+    plug :accepts, ["json"]
+    plug BandTogetherAppWeb.AuthPlug
+  end
+
   scope "/", BandTogetherAppWeb do
     pipe_through :api # Use the default browser stack
 
+    resources "/sessions", SessionController, only: [:create, :delete]
     resources "/users", UserController, except: [:new, :edit]
     resources "/bands", BandController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]

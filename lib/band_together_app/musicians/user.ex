@@ -13,7 +13,8 @@ defmodule BandTogetherApp.Musicians.User do
     field :first_name, :string
     field :last_name, :string
     field :stage_name, :string
-    field :password, :string
+    field :password_hash, :string
+    field :password, :string, virtual: true
     field :loc_country, :string
     field :loc_state, :string
     field :loc_city, :string
@@ -30,5 +31,23 @@ defmodule BandTogetherApp.Musicians.User do
     |> cast(attrs, [:first_name, :last_name, :email, :password, :biography, :stage_name, :loc_country, :loc_state, :loc_city])
     |> validate_required([:first_name, :last_name, :email, :biography])
     |> unique_constraint(:email)
+    |> put_password_hash
+  end
+
+  def registration_changeset(model, params \\ :empty) do
+    model
+    |> changeset(params)
+    |> cast(params, ~w(password), [])
+    |> validate_length(:password, min: 6)
+    |> put_password_hash
+  end
+
+  defp put_password_hash(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
+      _ ->
+        changeset
+    end
   end
 end
