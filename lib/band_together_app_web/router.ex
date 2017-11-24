@@ -21,12 +21,18 @@ defmodule BandTogetherAppWeb.Router do
   scope "/", BandTogetherAppWeb do
     pipe_through :api # Use the default browser stack
 
-    resources "/sessions", SessionController, only: [:create, :delete]
+    resources "/sessions", SessionController, only: [:create]
+    get "/health_check", MonitoringController, :health_check
+  end
+
+  scope "/", BandTogetherAppWeb do
+    pipe_through :auth_api
+
+    resources "/sessions", SessionController, only: [:delete]
     resources "/users", UserController, except: [:new, :edit]
     resources "/bands", BandController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]
     resources "/portfolios", PortfolioController, except: [:new, :edit]
-    get "/health_check", MonitoringController, :health_check
   end
 
   # Other scopes may use custom stacks.

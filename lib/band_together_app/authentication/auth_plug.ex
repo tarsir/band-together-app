@@ -1,7 +1,7 @@
 defmodule BandTogetherAppWeb.AuthPlug do
   import Plug.Conn
   alias BandTogetherApp.Repo
-  alias BandTogetherApp.Musicians.Repo
+  alias BandTogetherApp.Musicians.User
   alias BandTogetherApp.Authentication.Session
   import Ecto.Query, only: [from: 2]
 
