@@ -13,26 +13,31 @@ defmodule BandTogetherAppWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :auth_api do
-    plug :accepts, ["json"]
+  pipeline :auth do
     plug BandTogetherAppWeb.AuthPlug
   end
 
-  scope "/", BandTogetherAppWeb do
+  scope "/api", BandTogetherAppWeb do
     pipe_through :api # Use the default browser stack
 
     resources "/sessions", SessionController, only: [:create]
     get "/health_check", MonitoringController, :health_check
   end
 
-  scope "/", BandTogetherAppWeb do
-    pipe_through :auth_api
+  scope "/api", BandTogetherAppWeb do
+    pipe_through [:auth, :api]
 
     resources "/sessions", SessionController, only: [:delete]
     resources "/users", UserController, except: [:new, :edit]
     resources "/bands", BandController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]
     resources "/portfolios", PortfolioController, except: [:new, :edit]
+  end
+
+  scope "/", BandTogetherAppWeb do
+    pipe_through [:browser]
+
+    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
