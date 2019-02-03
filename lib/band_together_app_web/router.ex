@@ -21,6 +21,7 @@ defmodule BandTogetherAppWeb.Router do
     pipe_through :api # Use the default browser stack
 
     resources "/sessions", SessionController, only: [:create]
+    get "/current_user", SessionController, :current_user
     get "/health_check", MonitoringController, :health_check
   end
 
@@ -39,6 +40,7 @@ defmodule BandTogetherAppWeb.Router do
 
     get "/", PageController, :index
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", BandTogetherAppWeb do

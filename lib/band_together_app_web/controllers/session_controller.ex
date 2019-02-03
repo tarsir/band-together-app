@@ -18,7 +18,7 @@ defmodule BandTogetherAppWeb.SessionController do
         {:ok, session} = Repo.insert(session_changeset)
         conn
         |> put_status(:created)
-        |> render("show.json", session: session)
+        |> render("show.json", session: session, user: user)
       user ->
         conn
         |> put_status(:unauthorized)
@@ -28,6 +28,17 @@ defmodule BandTogetherAppWeb.SessionController do
         conn
         |> put_status(:unauthorized)
         |> render("error.json")
+    end
+  end
+
+  def current_user(conn, %{"sessionToken" => token, "userId" => user_id}) do
+    session = Repo.get_by(Session, token: token)
+    if session.user_id == user_id do
+      render(conn, "session_user.json", session: session, user: Repo.get(User, user_id))
+    else
+      conn
+      |> put_status(:error)
+      |> render("error.json")
     end
   end
 

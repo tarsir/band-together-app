@@ -41,6 +41,6 @@ defmodule BandTogetherAppWeb.AuthPlug do
   end
 
   defp auth_error!(conn) do
-    conn |> put_status(:unauthorized) |> halt()
+    conn |> put_status(:unauthorized) |> send_resp(401, "unauthorized") |> halt()
   end
 end

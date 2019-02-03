@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :band_together_app, BandTogetherApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "zenbook",
   database: "band_together_app_dev",
   hostname: "localhost",
   pool_size: 10
