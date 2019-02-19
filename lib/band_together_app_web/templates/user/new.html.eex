@@ -1,0 +1,81 @@
+<div class="columns">
+  <%= form_for @changeset, Routes.user_path(@conn, :create), class: "is-offset-one-quarter is-half has-text-centered column", fn f -> %>
+    <h2 class="subtitle is-3">User Registration</h2>
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">First Name</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Last Name</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Stage Name</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Country</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label is-normal">State/Province</label>
+      <div class="control field-body">
+        <div class="field">
+          <input class="input" type="text" />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">City</label>
+      <div class="control field-body">
+        <div class="field">
+          <input class="input" type="text" />
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Biography</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Email</label>
+      <div class="control field-body">
+        <input class="input" type="text" />
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <label class="label field-label is-normal">Password</label>
+      <%= label(:register, :)
+      <div class="control field-body">
+        <div class="field">
+          <%= password_input(:register, :password, class: "input") %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="has-text-centered">
+        <%= submit "Register!", class: "button is-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

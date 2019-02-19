@@ -1,5 +1,5 @@
 <div class="columns">
-  <%= form_tag("/login", method: "post", class: "is-offset-one-quarter is-half has-text-centered column") do %>
+  <%= form_tag("/signin", method: "post", class: "is-offset-one-quarter is-half has-text-centered column") do %>
     <h1 class="subtitle is-1">Login</h2>
     <div class="field">
       <%= label(:login, :email, "Email", class: "label") %>

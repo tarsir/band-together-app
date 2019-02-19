@@ -11,6 +11,10 @@ defmodule BandTogetherAppWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
+  def new(conn, _) do
+    render(conn, :new)
+  end
+
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Musicians.create_user(user_params) do
       conn
