@@ -25,18 +25,11 @@
             <a class="navbar-item" href="/bands">Band List</a>
           </div>
           <div class="navbar-end">
-            <a href="/">
+            <a class="navbar-item" href="/signin">Sign In</a>
           </div>
         </div>
       </div>
     </nav>
-    <%# <header class="header"> %>
-      <%#   <nav role="navigation"> %>
-        <%#     <ul class="nav nav-pills pull-right"> %>
-          <%#       Band Together %>
-          <%#     </ul> %>
-        <%#   </nav> %>
-      <%# </header> %>
 
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

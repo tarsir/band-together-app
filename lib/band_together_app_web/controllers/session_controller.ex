@@ -10,6 +10,16 @@ defmodule BandTogetherAppWeb.SessionController do
 
   action_fallback BandTogetherAppWeb.FallbackController
 
+  def new(conn, %{"redirect_target" => redirect_target}) do
+    conn 
+    |> put_flash(:info, "You must be signed in to access this page.")
+    |> render("new.html", login: %{}, redirect: redirect_target)
+  end
+
+  def new(conn, _) do
+    render(conn, "new.html", login: %{}, redirect: "")
+  end
+
   def create(conn, %{"email" => email, "password" => password}) do
     user = Repo.get_by(User, email: email)
     cond do
