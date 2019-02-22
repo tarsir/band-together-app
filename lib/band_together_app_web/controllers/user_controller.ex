@@ -12,7 +12,8 @@ defmodule BandTogetherAppWeb.UserController do
   end
 
   def new(conn, _) do
-    render(conn, :new)
+    changeset = Musicians.change_user(%User{})
+    render(conn, :new, changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
