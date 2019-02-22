@@ -8,7 +8,7 @@ defmodule BandTogetherAppWeb.UserController do
 
   def index(conn, _params) do
     users = Musicians.list_users()
-    render(conn, "index.json", users: users)
+    render(conn, :index, users: users)
   end
 
   def new(conn, _) do
