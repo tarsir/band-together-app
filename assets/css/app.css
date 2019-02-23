@@ -11,3 +11,15 @@ body {
 thead {
   font-size: 18px;
 }
+
+.front-hero {
+  background-color: #29ecbe;
+}
+
+.front-appeal-sections {
+  font-size: 18px;
+}
+
+a:hover {
+  color: #fff;
+}
