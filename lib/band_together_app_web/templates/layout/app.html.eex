@@ -8,15 +8,14 @@
     <meta name="author" content="">
 
     <title>Hello BandTogetherApp!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <nav class="navbar is-light" role="navigation" aria-label="main-navigation">
+    <nav class="navbar is-transparent" role="navigation" aria-label="main-navigation">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="/">Band Together</a>
+          <a class="navbar-item nav-home" href="/">Band Together</a>
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
@@ -26,6 +25,7 @@
           </div>
           <div class="navbar-end">
             <a class="navbar-item" href="/signin">Sign In</a>
+            <a class="navbar-item" href="/about">About</a>
           </div>
         </div>
       </div>
@@ -34,12 +34,11 @@
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-    <div class="container">
-      <main role="main">
-      <%= render @view_module, @view_template, assigns %>
-      </main>
+    <main role="main">
+    <%= render @view_module, @view_template, assigns %>
+    </main>
 
-    </div> <!-- /container -->
+    <%# </div> <!-- /container --> %>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

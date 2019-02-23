@@ -1,21 +1,21 @@
 <div class="container">
   <div class="columns is-centered">
     <div class="column">
-      <h2 class="subtitle is-2 has-text-centered">User List</h2>
+      <h2 class="subtitle is-2 has-text-centered">Band List</h2>
       <table class="table is-striped is-fullwidth">
         <thead>
           <tr>
             <th>Display name</th>
-            <th>Email address</th>
+            <th>Location</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <%= for user <- @users do %>
+          <%= for band <- @bands do %>
             <tr>
-              <td><%= user.stage_name %></td>
-              <td><%= user.email %></td>
+              <td><%= band.stage_name %></td>
+              <td><%= band.loc_country %></td>
               <td>hewwo</td>
             </tr>
           <% end %>

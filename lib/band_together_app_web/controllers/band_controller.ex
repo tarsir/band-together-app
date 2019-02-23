@@ -8,7 +8,7 @@ defmodule BandTogetherAppWeb.BandController do
 
   def index(conn, _params) do
     bands = Musicians.list_bands()
-    render(conn, "index.json", bands: bands)
+    render(conn, :index, bands: bands)
   end
 
   def create(conn, %{"band" => band_params}) do

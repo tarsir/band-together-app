@@ -1,1 +1,35 @@
-fuck react
+<section class="hero front-hero is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Band Together
+      </h1>
+      <h2 class="subtitle">
+        Because when you band together,<br/>
+        you band <b>better.</b>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <h3 class="title is-3">Find Collaborators</h3>
+        <p class="front-appeal-sections">
+        Connect to musicians from all over the world
+        </p>
+      </div>
+    </div>
+
+    <div class="level-item has-text-centered">
+      <div>
+        <h3 class="title is-3">Post Tracks</h3>
+        <p class="front-appeal-sections">
+        Show the world the music you've made
+        </p>
+      </div>
+    </div>
+  </nav>
+</section>
