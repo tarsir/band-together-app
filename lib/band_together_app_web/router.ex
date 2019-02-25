@@ -43,7 +43,9 @@ defmodule BandTogetherAppWeb.Router do
     get "/register", UserController, :new
     get "/users", UserController, :index
     get "/bands", BandController, :index
-    get "/about", PageController, :index
+    get "/about", PageController, :about
+    post "/signin", SessionController, :create
+    delete "/logout", SessionController, :logout
   end
 
 
