@@ -26,4 +26,31 @@ a:hover {
 
 p.alert {
   text-align: center;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px;
+  width: 50%;
+  min-width: 600px;
+  margin: 12px auto;
+}
+
+p.alert:not(:empty):last-child {
+  margin-bottom: 16px;
+}
+
+p.alert:not(:empty):first-of-type {
+  margin-top: 16px;
+}
+
+p.alert:empty {
+  display: none;
+}
+
+.alert.alert-info {
+  background-color: #ddd;
+}
+
+.alert.alert-danger {
+  background-color: #ecbe29;
 }
