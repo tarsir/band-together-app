@@ -23,3 +23,7 @@ thead {
 a:hover {
   color: #fff;
 }
+
+p.alert {
+  text-align: center;
+}
