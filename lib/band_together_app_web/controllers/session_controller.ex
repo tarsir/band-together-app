@@ -22,44 +22,35 @@ defmodule BandTogetherAppWeb.SessionController do
     render(conn, "new.html", login: %{}, redirect: "")
   end
 
-  # JSON response methods
-
-  def create(conn, %{"email" => email, "password" => password}) do
+  def create(conn, %{"login" => %{"email" => email, "password" => password}}) do
     user = Repo.get_by(User, email: email)
     cond do
       user && checkpw(password, user.password_hash) ->
         session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
         {:ok, session} = Repo.insert(session_changeset)
         conn
-        |> put_status(:created)
-        |> render("show.json", session: session, user: user)
+        |> put_flash(:info, "Welcome back, " <> user.stage_name)
+        |> Plug.Conn.put_session(:session_token, session.token)
+        |> redirect(to: page_path(conn, :index))
       user ->
         conn
-        |> put_status(:unauthorized)
-        |> render("error.json")
+        |> put_flash(:error, "We couldn't sign you in, so double-check your email and password!")
+        |> render(:new, login: %{})
       true ->
         dummy_checkpw()
         conn
-        |> put_status(:unauthorized)
-        |> render("error.json")
+        |> put_flash(:error, "We couldn't sign you in, so double-check your email and password!")
+        |> render(:new, login: %{})
     end
   end
 
-  def current_user(conn, %{"sessionToken" => token, "userId" => user_id}) do
-    session = Repo.get_by(Session, token: token)
-    if session.user_id == user_id do
-      render(conn, "session_user.json", session: session, user: Repo.get(User, user_id))
-    else
-      conn
-      |> put_status(:error)
-      |> render("error.json")
-    end
-  end
+  # JSON response methods
 
-  def delete(conn, %{"token" => token}) do
-    session = Repo.get_by(Session, token: token)
-    with {:ok, %Session{}} <- Authentication.delete_session(session) do
-      send_resp(conn, :no_content, "")
-    end
+  # not yet ready, needs to use current user to get session token
+  def logout(conn, _) do
+    # session = Repo.get_by(Session, token: token)
+    # with {:ok, %Session{}} <- Authentication.delete_session(session) do
+    #   send_resp(conn, :no_content, "")
+    # end
   end
 end
