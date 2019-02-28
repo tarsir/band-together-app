@@ -45,7 +45,7 @@ defmodule BandTogetherAppWeb.Router do
     get "/bands", BandController, :index
     get "/about", PageController, :about
     post "/signin", SessionController, :create
-    delete "/logout", SessionController, :logout
+    get "/signout", SessionController, :logout
   end
 
 

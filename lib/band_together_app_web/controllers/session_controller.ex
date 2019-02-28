@@ -6,6 +6,7 @@ defmodule BandTogetherAppWeb.SessionController do
   alias BandTogetherApp.Musicians.User
   alias BandTogetherApp.Repo
 
+  alias BandTogetherApp.Authentication
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   action_fallback BandTogetherAppWeb.FallbackController
@@ -48,9 +49,14 @@ defmodule BandTogetherAppWeb.SessionController do
 
   # not yet ready, needs to use current user to get session token
   def logout(conn, _) do
-    # session = Repo.get_by(Session, token: token)
-    # with {:ok, %Session{}} <- Authentication.delete_session(session) do
-    #   send_resp(conn, :no_content, "")
-    # end
+    case Authentication.current_user(conn) do
+      {:ok, user} ->
+        session = Repo.get_by(Session, user_id: user.id)
+        with {:ok, %Session{}} <- Authentication.delete_session(session) do
+          conn
+          |> put_flash(:info, "Successfully signed out!")
+          |> redirect(to: page_path(conn, :index))
+        end
+    end
   end
 end
