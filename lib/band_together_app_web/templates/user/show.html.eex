@@ -10,7 +10,7 @@
 
       <div class="column is-5" style="background-color: #ff8888;">
         <h1 class="title has-text-centered">Profile</h1>
-        <div class="profile-row"><b>Real name:</b> <%= @user.first_name <> " " <> @user.last_name %></div>
+        <div class="profile-row"><b>Real name:</b> <%= user_name_display(@user) %></div>
         <div class="profile-row"><b>Location:</b> <%= @user.loc_country %></div>
         <div class="profile-row"><b>Biography:</b> <%= @user.biography %></div>
         <div class="profile-row"><b>Talents:</b> </div>
