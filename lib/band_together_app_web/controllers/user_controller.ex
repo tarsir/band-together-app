@@ -27,7 +27,7 @@ defmodule BandTogetherAppWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Musicians.get_user!(id)
-    render(conn, "show.json", user: user)
+    render(conn, :show, user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do

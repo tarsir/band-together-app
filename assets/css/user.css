@@ -1,3 +1,8 @@
 .user-registration-columns {
   margin-bottom: 0 !important;
 }
+
+.profile-talent-entry {
+  display: flex;
+  align-items: center;
+}
