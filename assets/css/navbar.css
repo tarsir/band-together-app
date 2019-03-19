@@ -1,0 +1,16 @@
+.navbar-item {
+   font-size: 20px; 
+   color: #111;
+}
+
+.navbar-item:hover {
+  background-color: #de94f5;
+}
+
+.nav-home {
+  font-size: 32px;
+}
+
+.navbar {
+  background-color: #d87ef3;
+}

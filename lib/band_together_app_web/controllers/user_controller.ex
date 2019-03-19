@@ -8,7 +8,12 @@ defmodule BandTogetherAppWeb.UserController do
 
   def index(conn, _params) do
     users = Musicians.list_users()
-    render(conn, "index.json", users: users)
+    render(conn, :index, users: users)
+  end
+
+  def new(conn, _) do
+    changeset = Musicians.change_user(%User{})
+    render(conn, :new, changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -22,7 +27,7 @@ defmodule BandTogetherAppWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Musicians.get_user!(id)
-    render(conn, "show.json", user: user)
+    render(conn, :show, user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do

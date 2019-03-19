@@ -1,0 +1,88 @@
+<div class="columns is-centered">
+  <%= form_for @changeset, user_path(@conn, :create), [class: "is-half column"], fn f -> %>
+    <h2 class="subtitle is-3 has-text-centered">User Registration</h2>
+    <div class="columns user-registration-columns">
+      <div class="field column">
+        <%= label(f, :first_name, "First name*", class: "label") %>
+        <div class="control">
+          <%= text_input f, :first_name, class: "input", required: true %>
+        </div>
+      </div>
+
+      <div class="field column">
+        <%= label(f, :last_name, "Last name*", class: "label") %>
+        <div class="control">
+          <%= text_input f, :last_name, class: "input", required: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field ">
+      <%= label(f, :email_address, "Email address*", class: "label") %>
+      <div class="control">
+        <%= text_input(f, :email_address, class: 'input', required: true) %>
+      </div>
+    </div>
+
+    <div class="field ">
+      <%= label(f, :stage_name, "Display name*", class: "label") %>
+      <div class="control">
+        <%= text_input(f, :stage_name, class: 'input', required: true) %>
+      </div>
+    </div>
+
+    <div class="columns user-registration-columns">
+      <div class="field column">
+        <%= label(f, :country, class: "label") %>
+        <div class="control">
+          <%= text_input(f, :country, class: 'input') %>
+        </div>
+      </div>
+
+      <div class="field column">
+        <%= label(f, :state_province, "State/Province", class: "label") %>
+        <div class="control">
+          <%= text_input(f, :state_province, class: 'input') %>
+        </div>
+      </div>
+
+      <div class="field column">
+        <%= label(f, :city, class: "label") %>
+        <div class="control">
+          <%= text_input(f, :city, class: 'input') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns user-registration-columns">
+      <div class="field column">
+        <%= label(f, :password, "Password*", class: "label") %>
+        <div class="control">
+          <%= password_input f, :password, class: "input", required: true %>
+        </div>
+      </div>
+
+      <div class="field column">
+        <%= label(f, :password_confirmation, "Confirm Password*", class: "label") %>
+        <div class="control">
+          <%= password_input f, :password_confirmation, class: "input", required: true%>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="field">
+      <%= label(f, :biography, class: "label") %>
+      <div class="control">
+        <%= textarea(f, :biography, class: "textarea") %>
+      </div>
+    </div>
+
+    <div class="field ">
+      <div class="has-text-centered">
+        <%= submit "Register!", class: "button is-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

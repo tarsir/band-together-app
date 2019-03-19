@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title has-text-centered"><%= @band.stage_name %></h2>
+    <div class="columns">
+      <div class="column is-3">
+        <%= for member <- @band.users do %>
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+              <%= member.stage_name %>
+              </p>
+            </header>
+            <div class="card-content">
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

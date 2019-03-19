@@ -1,0 +1,14 @@
+.center-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sign-in-button {
+  color: #363636;
+  background-color: #de94f5;
+}
+
+.register-button {
+  background-color: #94f5de;
+}

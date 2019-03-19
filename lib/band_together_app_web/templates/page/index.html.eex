@@ -1,1 +1,13 @@
-fuck react
+<section class="hero front-hero is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Band Together
+      </h1>
+      <h2 class="subtitle">
+        Because when you band together,<br/>
+        you band <b>better.</b>
+      </h2>
+    </div>
+  </div>
+</section>

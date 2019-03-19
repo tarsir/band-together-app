@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="columns">
+    <%= form_tag("/signin", method: "post", class: "is-offset-one-quarter is-half has-text-centered column") do %>
+      <h1 class="subtitle is-1">Login</h2>
+      <div class="field">
+        <%= label(:login, :email, "Email", class: "label") %>
+        <div class="control">
+          <%= text_input(:login, :email, class: "input") %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= label(:login, :password, "Password", class: "label") %>
+        <div class="control">
+          <%= password_input(:login, :password, class: "input") %>
+        </div>
+      </div>
+
+      <div class="field center-group">
+        <div class="control register-bottom">
+          <%= submit "Sign In", class: "button is-medium sign-in-button is-primary" %>
+        </div>
+        <div class="register-bottom">
+          <a href="/register" class="button is-medium register-button is-info">Register</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

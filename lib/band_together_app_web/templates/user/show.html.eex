@@ -1,0 +1,34 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-centered is-2 is-narrow" style="background-color: #88f;">
+        <h1 class="title"><%= @user.stage_name %></h1>
+        <figure class="image is-centered is-128x128">
+          <img src="<%= static_path(@conn, "/images/avatar_placeholder.png") %>"></img>
+        </figure>
+      </div>
+
+      <div class="column is-5" style="background-color: #ff8888;">
+        <h1 class="title has-text-centered">Profile</h1>
+        <div class="profile-row"><b>Real name:</b> <%= user_name_display(@user) %></div>
+        <div class="profile-row"><b>Location:</b> <%= @user.loc_country %></div>
+        <div class="profile-row"><b>Biography:</b> <%= @user.biography %></div>
+        <div class="profile-row"><b>Talents:</b> </div>
+        <ul class="profile-talent-list">
+          <%= for talent <- @user.talents do %>
+            <li class="profile-talent-entry"><img src="/images/<%= talent.img_filepath %>" /><%= talent.title %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="column" style="background-color: #88ff88">
+        <h1 class="title has-text-centered">Portfolio</h1>
+        <ul class="profile-portfolio-list">
+          <%= for portfolio_piece <- @user.portfolios do %>
+            <li class="profile-portfolio-entry"><a href="<%= portfolio_piece.url %>"><%= portfolio_piece.title %></a>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

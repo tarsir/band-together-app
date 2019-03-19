@@ -39,6 +39,15 @@ defmodule BandTogetherAppWeb.Router do
     pipe_through [:browser]
 
     get "/", PageController, :index
+    get "/signin", SessionController, :new
+    get "/register", UserController, :new
+    get "/users", UserController, :index
+    get "/users/:id", UserController, :show
+    get "/bands", BandController, :index
+    get "/bands/:id", BandController, :show
+    get "/about", PageController, :about
+    post "/signin", SessionController, :create
+    get "/signout", SessionController, :logout
   end
 
 
