@@ -5,7 +5,20 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label(f, :tag_name, "Tag", class: "label") %>
+    </div>
+    <div class="field-body">
+      <div class="field has-addons">
+        <div class="control">
+          <%= text_input f, :tag_name, class: "input", required: true %>
+        </div>
+        <div class="control">
+          <%= submit "Submit", class: "button is-primary" %>
+        </div>
+      </div>
+    </div>
   </div>
+
 <% end %>
