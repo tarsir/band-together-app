@@ -1,8 +1,10 @@
-<h2>Show Tag</h2>
+<div class="container">
+  <h2 class="title">Show Tag</h2>
 
-<ul>
+  <div class="content has-text-centered">
+    <p><b>Tag name:</b> <%= @tag.tag_name %></p>
+  </div>
 
-</ul>
-
-<span><%= link "Edit", to: tag_path(@conn, :edit, @tag) %></span>
-<span><%= link "Back", to: tag_path(@conn, :index) %></span>
+  <span><%= link "Edit", to: tag_path(@conn, :edit, @tag) %></span>
+  <span><%= link "Back", to: tag_path(@conn, :index) %></span>
+</div>
