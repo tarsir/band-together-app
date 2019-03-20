@@ -20,7 +20,7 @@ defmodule BandTogetherApp.Mixfile do
   def application do
     [
       mod: {BandTogetherApp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ssl]
     ]
   end
 
