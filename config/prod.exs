@@ -2,6 +2,7 @@ use Mix.Config
 
 config :band_together_app, BandTogetherAppWeb.Endpoint,
   http: [port: {:system, "PORT"}],
+  load_from_system_env: true,
   secret_key_base: "${SECRET_KEY_BASE}",
   url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
   server: true,
