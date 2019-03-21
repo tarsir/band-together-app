@@ -1,17 +1,21 @@
 use Mix.Config
 
 config :band_together_app, BandTogetherAppWeb.Endpoint,
+  http: [port: {:system, "PORT"}],
   load_from_system_env: true,
-  url: [scheme: "https", host: "band-together-app.herokuapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  secret_key_base: "${SECRET_KEY_BASE}",
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
+  server: true,
+  root: ".",
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  version: Application.spec(:band_together_app, :vsn)
 
 config :band_together_app, BandTogetherApp.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  pool_size: 2
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :debug
