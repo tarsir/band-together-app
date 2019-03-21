@@ -1,13 +1,13 @@
 use Mix.Config
 
 config :band_together_app, BandTogetherAppWeb.Endpoint,
-  load_from_system_env: true,
   http: [port: {:system, "PORT"}],
-  server: true,
   secret_key_base: "${SECRET_KEY_BASE}",
-  url: [scheme: "https", host: "${APP_NAME}.gigalixirapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
+  server: true,
+  root: ".",
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  version: Application.spec(:band_together_app, :vsn)
 
 config :band_together_app, BandTogetherApp.Repo,
   adapter: Ecto.Adapters.Postgres,
