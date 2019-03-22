@@ -270,9 +270,9 @@ defmodule BandTogetherApp.MusiciansTest do
   describe "tags" do
     alias BandTogetherApp.Musicians.Tag
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{tag_name: "valid"}
+    @update_attrs %{tag_name: "also valid"}
+    @invalid_attrs %{tag_name: nil}
 
     def tag_fixture(attrs \\ %{}) do
       {:ok, tag} =

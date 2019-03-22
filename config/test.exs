@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :band_together_app, BandTogetherApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "zenbook",
   database: "band_together_app_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -10,6 +10,7 @@ defmodule BandTogetherApp.Musicians.Portfolio do
 
     timestamps()
     many_to_many :users, BandTogetherApp.Musicians.User, join_through: "users_portfolios"
+    many_to_many :tags, BandTogetherApp.Musicians.Tag, join_through: "portfolios_tags"
   end
 
   @doc false

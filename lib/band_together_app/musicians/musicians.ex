@@ -430,6 +430,13 @@ defmodule BandTogetherApp.Musicians do
   """
   def get_tag!(id), do: Repo.get!(Tag, id)
 
+  def get_portfolios_by_tag(tag_ids) do
+    Ecto.Query.from(t in Tag,
+      where: t.id in ^tag_ids)
+    |> Repo.all()
+    |> Repo.preload(:portfolios)
+  end
+
   @doc """
   Creates a tag.
 
