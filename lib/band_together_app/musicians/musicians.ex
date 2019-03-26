@@ -430,11 +430,11 @@ defmodule BandTogetherApp.Musicians do
   """
   def get_tag!(id), do: Repo.get!(Tag, id)
 
-  def get_portfolios_by_tag(tag_ids) do
-    Ecto.Query.from(t in Tag,
-      where: t.id in ^tag_ids)
+  def get_portfolios_by_tag(tag) do
+    Ecto.Query.from(p in Portfolio,
+      join: tag in assoc(p, :tags),
+      select: p)
     |> Repo.all()
-    |> Repo.preload(:portfolios)
   end
 
   @doc """
@@ -500,5 +500,13 @@ defmodule BandTogetherApp.Musicians do
   """
   def change_tag(%Tag{} = tag) do
     Tag.changeset(tag, %{})
+  end
+
+  def add_tag_to_portfolio(%Tag{} = tag, %Portfolio{} = portfolio) do
+    portfolio
+    |> Repo.preload(:tags)
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:tags, [tag])
+    |> Repo.update!
   end
 end

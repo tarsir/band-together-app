@@ -16,7 +16,8 @@ defmodule BandTogetherApp.MusiciansTest do
         |> Enum.into(@valid_attrs)
         |> Musicians.create_user()
 
-      user
+      user 
+      |> Map.put(:password, nil)
     end
 
     test "list_users/0 returns all users" do
@@ -25,7 +26,7 @@ defmodule BandTogetherApp.MusiciansTest do
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
+      user = user_fixture() |> Repo.preload([:talents, :portfolios, :bands])
       assert Musicians.get_user!(user.id) == user
     end
 
@@ -43,7 +44,7 @@ defmodule BandTogetherApp.MusiciansTest do
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
+      user = user_fixture() |> Repo.preload([:talents, :portfolios, :bands])
       assert {:ok, user} = Musicians.update_user(user, @update_attrs)
       assert %User{} = user
       assert user.biography == "some updated biography"
@@ -54,7 +55,7 @@ defmodule BandTogetherApp.MusiciansTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
+      user = user_fixture() |> Repo.preload([:talents, :portfolios, :bands])
       assert {:error, %Ecto.Changeset{}} = Musicians.update_user(user, @invalid_attrs)
       assert user == Musicians.get_user!(user.id)
     end
@@ -74,9 +75,9 @@ defmodule BandTogetherApp.MusiciansTest do
   describe "talents" do
     alias BandTogetherApp.Musicians.Talent
 
-    @valid_attrs %{description: "some description", img_filepath: "some img_filepath", title: "some title"}
-    @update_attrs %{description: "some updated description", img_filepath: "some updated img_filepath", title: "some updated title"}
-    @invalid_attrs %{description: nil, img_filepath: nil, title: nil}
+    @valid_attrs %{img_filepath: "some img_filepath", title: "some title"}
+    @update_attrs %{img_filepath: "some updated img_filepath", title: "some updated title"}
+    @invalid_attrs %{img_filepath: nil, title: nil}
 
     def talent_fixture(attrs \\ %{}) do
       {:ok, talent} =
@@ -99,7 +100,6 @@ defmodule BandTogetherApp.MusiciansTest do
 
     test "create_talent/1 with valid data creates a talent" do
       assert {:ok, %Talent{} = talent} = Musicians.create_talent(@valid_attrs)
-      assert talent.description == "some description"
       assert talent.img_filepath == "some img_filepath"
       assert talent.title == "some title"
     end
@@ -112,7 +112,6 @@ defmodule BandTogetherApp.MusiciansTest do
       talent = talent_fixture()
       assert {:ok, talent} = Musicians.update_talent(talent, @update_attrs)
       assert %Talent{} = talent
-      assert talent.description == "some updated description"
       assert talent.img_filepath == "some updated img_filepath"
       assert talent.title == "some updated title"
     end
@@ -211,6 +210,7 @@ defmodule BandTogetherApp.MusiciansTest do
         |> Musicians.create_band()
 
       band
+      |> Repo.preload(:users)
     end
 
     test "list_bands/0 returns all bands" do
@@ -322,6 +322,29 @@ defmodule BandTogetherApp.MusiciansTest do
     test "change_tag/1 returns a tag changeset" do
       tag = tag_fixture()
       assert %Ecto.Changeset{} = Musicians.change_tag(tag)
+    end
+  end
+
+  describe "portfolios_tags" do
+    test "allows tagging portfolios" do
+      portfolio = portfolio_fixture()
+      tag = tag_fixture()
+
+      Musicians.add_tag_to_portfolio(tag, portfolio)
+      assert tag == Repo.one(assoc(portfolio, :tags))
+    end
+
+    test "allows searching portfolios by tag" do
+      portfolio = portfolio_fixture()
+      other_portfolio = portfolio_fixture(
+        %{title: "other portfolio", url: "other portfolio.url"}
+      )
+      tag = tag_fixture()
+
+      Musicians.add_tag_to_portfolio(tag, portfolio)
+      portfolios_with_tag = Musicians.get_portfolios_by_tag(tag)
+      assert portfolios_with_tag == [portfolio]
+      assert !Enum.member?(portfolios_with_tag, other_portfolio)
     end
   end
 end
