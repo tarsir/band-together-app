@@ -11,9 +11,11 @@ defmodule BandTogetherApp.Repo.Migrations.AddPortfolioTagsTable do
     create table(:portfolios_tags) do
       add :portfolio_id, references(:portfolios)
       add :tag_id, references(:tags)
+
+      timestamps()
     end
 
-    create index(:tags, :tag_name)
+    create unique_index(:tags, :tag_name)
     create unique_index(:portfolios_tags, [:portfolio_id, :tag_id])
   end
 end

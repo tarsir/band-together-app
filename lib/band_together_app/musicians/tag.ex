@@ -7,7 +7,7 @@ defmodule BandTogetherApp.Musicians.Tag do
     field :tag_name, :string
 
     timestamps()
-    many_to_many :portfolios, BandTogetherApp.Musicians.Portfolio, join_through: "portfolios_tags"
+    many_to_many :portfolios, BandTogetherApp.Musicians.Portfolio, join_through: BandTogetherApp.Musicians.PortfolioTags
   end
 
   @doc false

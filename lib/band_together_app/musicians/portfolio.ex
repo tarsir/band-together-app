@@ -10,7 +10,7 @@ defmodule BandTogetherApp.Musicians.Portfolio do
 
     timestamps()
     many_to_many :users, BandTogetherApp.Musicians.User, join_through: "users_portfolios"
-    many_to_many :tags, BandTogetherApp.Musicians.Tag, join_through: "portfolios_tags"
+    many_to_many :tags, BandTogetherApp.Musicians.Tag, join_through: BandTogetherApp.Musicians.PortfolioTags
   end
 
   @doc false
@@ -18,5 +18,6 @@ defmodule BandTogetherApp.Musicians.Portfolio do
     portfolio
     |> cast(attrs, [:title, :url])
     |> validate_required([:title, :url])
+    |> cast_assoc([:portfolios, :tags])
   end
 end
