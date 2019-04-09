@@ -51,7 +51,6 @@ defmodule BandTogetherAppWeb.Router do
     resources "/tags", TagController
   end
 
-
   # Other scopes may use custom stacks.
   # scope "/api", BandTogetherAppWeb do
   #   pipe_through :api

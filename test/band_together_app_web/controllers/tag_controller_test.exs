@@ -3,9 +3,9 @@ defmodule BandTogetherAppWeb.TagControllerTest do
 
   alias BandTogetherApp.Musicians
 
-  @create_attrs %{}
-  @update_attrs %{}
-  @invalid_attrs %{}
+  @create_attrs %{tag_name: "tag"}
+  @update_attrs %{tag_name: "new tag"}
+  @invalid_attrs %{tag_name: nil}
 
   def fixture(:tag) do
     {:ok, tag} = Musicians.create_tag(@create_attrs)
