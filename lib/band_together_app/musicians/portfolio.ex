@@ -18,6 +18,5 @@ defmodule BandTogetherApp.Musicians.Portfolio do
     portfolio
     |> cast(attrs, [:title, :url])
     |> validate_required([:title, :url])
-    |> cast_assoc([:portfolios, :tags])
   end
 end

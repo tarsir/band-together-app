@@ -8,7 +8,7 @@ defmodule BandTogetherAppWeb.PortfolioController do
 
   def index(conn, _params) do
     portfolios = Musicians.list_portfolios()
-    render(conn, "index.json", portfolios: portfolios)
+    render(conn, :index, portfolios: portfolios)
   end
 
   def create(conn, %{"portfolio" => portfolio_params}) do
@@ -16,27 +16,28 @@ defmodule BandTogetherAppWeb.PortfolioController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", portfolio_path(conn, :show, portfolio))
-      |> render("show.json", portfolio: portfolio)
+      |> render(:show, portfolio: portfolio)
     end
   end
 
   def show(conn, %{"id" => id}) do
     portfolio = Musicians.get_portfolio!(id)
-    render(conn, "show.json", portfolio: portfolio)
+    render(conn, :show, portfolio: portfolio)
   end
 
   def update(conn, %{"id" => id, "portfolio" => portfolio_params}) do
     portfolio = Musicians.get_portfolio!(id)
 
     with {:ok, %Portfolio{} = portfolio} <- Musicians.update_portfolio(portfolio, portfolio_params) do
-      render(conn, "show.json", portfolio: portfolio)
+      render(conn, :show, portfolio: portfolio)
     end
   end
 
   def delete(conn, %{"id" => id}) do
     portfolio = Musicians.get_portfolio!(id)
     with {:ok, %Portfolio{}} <- Musicians.delete_portfolio(portfolio) do
-      send_resp(conn, :no_content, "")
+      portfolios = Musicians.list_portfolios()
+      render(conn, :index, portfolios: portfolios)
     end
   end
 end

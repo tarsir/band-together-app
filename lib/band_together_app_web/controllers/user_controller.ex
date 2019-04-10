@@ -20,8 +20,7 @@ defmodule BandTogetherAppWeb.UserController do
     with {:ok, %User{} = user} <- Musicians.create_user(user_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", user_path(conn, :show, user))
-      |> render("show.json", user: user)
+      |> render(:show, user: user)
     end
   end
 
@@ -34,14 +33,14 @@ defmodule BandTogetherAppWeb.UserController do
     user = Musicians.get_user!(id)
 
     with {:ok, %User{} = user} <- Musicians.update_user(user, user_params) do
-      render(conn, "show.json", user: user)
+      render(conn, :show, user: user)
     end
   end
 
   def delete(conn, %{"id" => id}) do
     user = Musicians.get_user!(id)
     with {:ok, %User{}} <- Musicians.delete_user(user) do
-      send_resp(conn, :no_content, "")
+      render(conn, :index)
     end
   end
 end

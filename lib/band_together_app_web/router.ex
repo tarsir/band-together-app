@@ -29,7 +29,6 @@ defmodule BandTogetherAppWeb.Router do
     pipe_through [:auth, :api]
 
     resources "/sessions", SessionController, only: [:delete]
-    resources "/users", UserController, except: [:new, :edit]
     resources "/bands", BandController, except: [:new, :edit]
     resources "/talents", TalentController, except: [:new, :edit]
     resources "/portfolios", PortfolioController, except: [:new, :edit]
